@@ -204,7 +204,7 @@ function toggleModal(cartmodal){
  function checkRestaurantOpen() {
   const data = new Date();
   const hora = data.getHours();
-  return hora >= 18 && hora < 22;
+  return hora >= 0 && hora < 0;
  }
 
  const spanItem = document.getElementById("date-span")
