@@ -61,6 +61,23 @@ function toggleModal(cartmodal){
 
   // Fuction to Add to cart
 
+  document.getElementById('btn-cart').addEventListener("click", function () {
+
+        Toastify({
+          text: "Produto adicionado no carrinho!",
+          duration:3000,
+          close:true,
+          gravity:"top",
+          position:"right",
+          stopOnFocus:true,
+          style:{
+            background: "green",
+          },
+        }).showToast();
+   
+    
+    
+  })
   function AddToCart(name, price) {
     //alert("O item é " + name)
 
@@ -204,7 +221,7 @@ function toggleModal(cartmodal){
  function checkRestaurantOpen() {
   const data = new Date();
   const hora = data.getHours();
-  return hora >= 0 && hora < 0;
+  return hora >= 8 && hora < 23;
  }
 
  const spanItem = document.getElementById("date-span")
