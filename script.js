@@ -1,5 +1,4 @@
 const menu = document.getElementById("menu")
-console.log(menu);
 const cartBtn = document.getElementById("cart-btn")
 const cartModal = document.getElementById("cart-modal")
 const cartItemsContainer = document.getElementById("cart-items")
@@ -105,7 +104,7 @@ function toggleModal(cartmodal){
     cart.forEach(item => {
      // console.log(item);
       const cartItemElement = document.createElement("div");
-      console.log(cartItemElement);
+      //console.log(cartItemElement);
       cartItemElement.innerHTML = 
       `
       <div class="flex items-center justify-between">
@@ -127,7 +126,7 @@ function toggleModal(cartmodal){
       </button>
 
       </div>
-      
+
       </div>
       `
       total += item.price * item.qtd;
@@ -231,21 +230,28 @@ function toggleModal(cartmodal){
   
     // send order to web api whatsapp
    
-    const cartItems = cart.map((item) => {
+    const cartItems = cart.map(
+      (item) => {
 
       return(
         `
         ${item.name} 
         Quantidade: (${item.qtd}) 
-        Preço: ${item.price} Kz 
-        |
-        `)
-    }).join("")
-      console.log(cartItems);
+        Preço: ${item.price} Kz |
+    
+        `
+      ) 
+    } 
+  ).join("")
+      //console.log(cartItems);
+     
       const message = encodeURIComponent(cartItems)
       const phone = "921639967"
+     
 
-      window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
+      window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}
+    
+      `, "_blank")
 
       cart = [];
       updateCartModal();
