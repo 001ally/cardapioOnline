@@ -117,9 +117,17 @@ function toggleModal(cartmodal){
           <p> ${item.price.toFixed(2)} KZS </p>
         </div>
 
+        <div>
+        <button class="Add-from-cart-btn" data-name="${item.name}">
+        Adicionar
+        </button>
+        
         <button class="remove-from-cart-btn" data-name="${item.name}">
         Remover
       </button>
+
+      </div>
+      
       </div>
       `
       total += item.price * item.qtd;
@@ -134,6 +142,32 @@ function toggleModal(cartmodal){
     cartCounter.innerHTML = cart.length;
   }
 
+  // Function to Add existent cart item 
+  cartItemsContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("Add-from-cart-btn")) {
+      const name = event.target.getAttribute("data-name")
+  
+      //console.log(name);
+      AddItemCart(name);
+    }
+   })
+  
+   function AddItemCart(name) {
+    const index = cart.findIndex(item => item.name === name);
+  
+    if (index !== -1) {
+
+      const item = cart [index];
+      //console.log(item);
+      if (item.qtd > 0) {
+        item.qtd += 1;
+        updateCartModal();
+        return;
+      }
+     // cart.splice(item, 1);
+      //updateCartModal();
+    }
+   }
   // Function to remove cart item
 
  cartItemsContainer.addEventListener("click", function (event) {
@@ -198,6 +232,7 @@ function toggleModal(cartmodal){
     // send order to web api whatsapp
    
     const cartItems = cart.map((item) => {
+
       return(
         `
         ${item.name} 
@@ -206,7 +241,7 @@ function toggleModal(cartmodal){
         |
         `)
     }).join("")
-      //console.log(cartItems);
+      console.log(cartItems);
       const message = encodeURIComponent(cartItems)
       const phone = "921639967"
 
